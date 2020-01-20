@@ -1,0 +1,75 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+      <h1 style="text-align: center">Sellers</h1><br>
+      <div class="row" [hidden]="!deleteMessage">
+           
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                        <div class="alert alert-info alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Category Data Deleted</strong>
+                        </div>
+                </div>
+                <div class="col-sm-4"></div>
+        </div>           
+    </div>
+
+  
+  <div class="panel-body">
+      <table  class="table table-hover table-sm" datatable [dtOptions]="dtOptions"
+      [dtTrigger]="dtTrigger"  >
+          <thead class="thead-light">
+              <tr>
+                  <th>Category Name</th>
+                  <th>Action</th>
+                  
+              </tr>
+          </thead>
+          <tbody>
+               <tr *ngFor="let category of Categorys ">
+                  <td>{{category.name}}</td>
+                  <td><button (click)="deleteCategory(category.name)" class='btn btn-primary'><i class="fa fa-futboll-0">Delete</i></button>&nbsp;
+                    <button (click)="showCategory(category)" class='btn btn-info'
+                    data-toggle="modal" data-target="#myModal">Update</button>
+                  </td>
+                </tr> 
+          </tbody><br>
+      </table>
+  </div>
+</div> 
+
+<div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+                <form [formGroup]="sellerupdateform" #updsel (ngSubmit)="updateSel(updsel)">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title" style="text-align: center">Update Seller</h4>
+              
+            </div>
+            
+            <!-- Modal body -->
+            <div [hidden]="isupdated">
+
+                <input type="hidden" class="form-control"  formControlName="accountId" [(ngModel)]="updSeller.accountId">
+                <div class="form-group">
+                    <label for="name">category Name</label>
+                    <input type="text" class="form-control"  formControlName="accountId" [(ngModel)]="updSeller.accountId"  >
+                </div>
+                                
+            </div>  
+              <div [hidden]="!isupdated">
+                  <h4>Category Detail Updated!</h4>
+              </div>        
+                
+            
+            <!-- Modal footer -->
+            <div class="modal-footer" >
+              <button type="submit" class="btn btn-success" [hidden]="isupdated">Update</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="changeisUpdate()">Close</button>
+            </div>
+            
+        </form>
+          </div>
+        </div>
+      </div>

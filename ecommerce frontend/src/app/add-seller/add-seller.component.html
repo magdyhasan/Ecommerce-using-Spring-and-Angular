@@ -1,0 +1,42 @@
+<h3>Create Seller</h3>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4" >
+    <div [hidden]="submitted" style="width: 400px;">
+      <form [formGroup]="sellersaveform" #saveseller (ngSubmit)="saveSeller(saveseller)">
+          <div class="form-group">
+              <label for="name">Seller Account ID</label>
+              <input type="text" class="form-control"  formControlName="accountId" data-toggle="tooltip" 
+                 data-placement="right" title="Enter Seller Account ID" >
+          </div>
+  
+          <div class="form-group">
+              <label for="name">Seller First Name</label>
+              <input type="text" class="form-control" formControlName="firstName" 
+                data-toggle="tooltip" data-placement="right" title="Enter First Name">
+          </div>
+  
+          <div class="form-group">
+              <label for="branch">Seller Last Name</label>
+              <input type="text" class="form-control" formControlName="lastName" 
+                data-toggle="tooltip" data-placement="right" title="Enter Last Name">
+          </div>
+  
+          <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+  </div>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+      <div [hidden]="!submitted">
+         <h4>Student Added SuccessFully!</h4>
+         <button (click)="addSellerForm()" class='btn btn-primary'>Add More Sellers</button>
+      </div>      
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+
+
