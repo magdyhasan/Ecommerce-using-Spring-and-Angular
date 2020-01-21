@@ -54,16 +54,6 @@ export class SellerListComponent implements OnInit {
         error => console.log(error));
   }
 
-
-  updateSeller(id: string){
-    this.sellerservice.getSeller(id)
-      .subscribe(
-        data => {
-          this.sellerslist=data           
-        },
-        error => console.log(error));
-  }
-
   showSeller(seller: Seller){
     this.updSeller = seller;
     console.log(this.isupdated);
@@ -71,20 +61,22 @@ export class SellerListComponent implements OnInit {
 
 
   sellerupdateform=new FormGroup({
+    id:new FormControl(),
     accountId:new FormControl(),
     firstName:new FormControl(),
     lastName:new FormControl(),
   });
 
-  updateSel(updsel){
+  updateSeller(updsel){
    this.seller=new Seller(); 
+   this.seller.id=this.SellerId.value;
    this.seller.accountId=this.SellerAccountId.value;
    this.seller.firstName=this.SellerFirstName.value;
    this.seller.lastName=this.SellerLastName.value;
-   console.log(this.SellerAccountId.value);
+   console.log(this.SellerId.value);
    
 
-   this.sellerservice.updateSeller(this.seller.accountId,this.seller).subscribe(
+   this.sellerservice.updateSeller(this.seller.id,this.seller).subscribe(
     data => {     
       this.isupdated=true;
       this.sellerservice.getSellerList().subscribe(data =>{
@@ -93,7 +85,9 @@ export class SellerListComponent implements OnInit {
     },
     error => console.log(error));
   }
-
+  get SellerId(){
+    return this.sellerupdateform.get('id');
+  }
   get SellerAccountId(){
     return this.sellerupdateform.get('accountId');
   }

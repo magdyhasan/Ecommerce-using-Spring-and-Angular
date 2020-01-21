@@ -1,0 +1,51 @@
+<h3>Add Product</h3>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4" >
+    <div [hidden]="submitted" style="width: 400px;">
+      <form [formGroup]="productsaveform" #saveproduct (ngSubmit)="saveProduct(saveproduct)">
+          <div class="form-group">
+              <label for="name">Product Name</label>
+              <input type="text" class="form-control"  formControlName="name" data-toggle="tooltip" 
+                 data-placement="right" title="Enter Product Name" >
+          </div>
+  
+          <div class="form-group">
+              <label for="name">Product Description</label>
+              <input type="text" class="form-control" formControlName="description" 
+                data-toggle="tooltip" data-placement="right" title="Enter Product Description">
+          </div>
+  
+          <div class="form-group">
+              <label for="branch">Product price</label>
+              <input type="text" class="form-control" formControlName="price" 
+                data-toggle="tooltip" data-placement="right" title="Enter Product Price">
+          </div>
+          <div class="form-group">
+            <label for="branch">Product Image URL</label>
+            <input class="form-control" formControlName="image_URL" 
+              data-toggle="tooltip" data-placement="right" title="Enter Product Image URL">
+          </div>
+          <div class="form-group">
+            <label for="branch">Product Category</label>
+            <input class="form-control" formControlName="category" 
+              data-toggle="tooltip" data-placement="right" title="Enter Product Category">
+          </div>
+          <button type="submit" class="btn btn-success">Add</button>
+      </form>
+  </div>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+      <div [hidden]="!submitted">
+         <h4>Product Added SuccessFully!</h4>
+         <button (click)="addProductForm()" class='btn btn-primary'>Add More Products</button>
+      </div>      
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+
+

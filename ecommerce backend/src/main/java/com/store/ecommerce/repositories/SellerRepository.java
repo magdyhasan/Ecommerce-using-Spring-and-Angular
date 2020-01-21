@@ -11,5 +11,5 @@ import com.store.ecommerce.models.Seller;
 @Repository
 public interface SellerRepository extends MongoRepository<Seller, String>{
     List<Seller> findByFirstName(String firstName);
-    Seller findByAccountId(String accountId);
+    Optional<Seller> findById(String id);
 }

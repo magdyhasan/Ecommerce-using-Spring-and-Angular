@@ -28,12 +28,11 @@ public class SellerService {
     public List<Seller> getAllCategoriesFromMongoDB(){
         return _sellerRepository.findAll();
     }
-//    
-//    @GetMapping(path = "/{seller_id}")
-//    public List<Seller> getSeller(@PathVariable("seller_id") String seller_id,Seller seller){
-//    	seller.setId(seller_id);  
-//        return _sellerRepository.findById(seller_id);
-//    }
+    
+    @GetMapping(path = "/{seller_id}")
+    public Seller getSeller(@PathVariable("seller_id") String seller_id){
+        return _sellerRepository.findById(seller_id).orElse(new Seller());
+    }
 
     @PostMapping(path = "save-seller")
     public void insert(@RequestBody Seller seller) {
@@ -42,7 +41,7 @@ public class SellerService {
     
     @DeleteMapping("delete-seller/{seller_id}")  
     public void deleteSeller(@PathVariable("seller_id") String seller_id) {  
-        _sellerRepository.delete(_sellerRepository.findByAccountId(seller_id));  
+        _sellerRepository.deleteById(seller_id);  
     }  
 
     @PostMapping("update-seller/{seller_id}")  

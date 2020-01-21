@@ -1,13 +1,13 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-      <h1 style="text-align: center">Sellers</h1><br>
+      <h1 style="text-align: center">Products</h1><br>
       <div class="row" [hidden]="!deleteMessage">
            
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4">
                         <div class="alert alert-info alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                <strong>Seller Data Deleted</strong>
+                                <strong>Product Data Deleted</strong>
                         </div>
                 </div>
                 <div class="col-sm-4"></div>
@@ -20,20 +20,24 @@
       [dtTrigger]="dtTrigger"  >
           <thead class="thead-light">
               <tr>
-                  <th>Seller AccountId</th>
-                  <th>Seller FirstName</th>
-                  <th>Seller LastName</th>
+                  <th>Product Name</th>
+                  <th>Product Description</th>
+                  <th>Product Price</th>
+                  <th>Product Categories</th>
+                  <th>Product Seller</th>
                   <th>Action</th>
                   
               </tr>
           </thead>
           <tbody>
-               <tr *ngFor="let seller of sellers ">
-                  <td>{{seller.accountId}}</td>
-                  <td>{{seller.firstName}}</td>
-                  <td>{{seller.lastName}}</td>
-                  <td><button (click)="deleteSeller(seller.id)" class='btn btn-primary'><i class="fa fa-futboll-0">Delete</i></button>&nbsp;
-                    <button (click)="showSeller(seller)" class='btn btn-info'
+               <tr *ngFor="let product of products ">
+                  <td>{{product.name}}</td>
+                  <td>{{product.description}}</td>
+                  <td>{{product.price}}</td>
+                  <td>{{product.category}}</td>
+                  <td>{{product.seller.firstName}} {{product.seller.lastName}}</td>
+                  <td><button (click)="deleteProduct(product.id)" class='btn btn-primary'><i class="fa fa-futboll-0">Delete</i></button>&nbsp;
+                    <button (click)="showProduct(product)" class='btn btn-info'
                     data-toggle="modal" data-target="#myModal">Update</button>
                   </td>
                 </tr> 
@@ -45,7 +49,7 @@
 <div class="modal" id="myModal">
         <div class="modal-dialog">
           <div class="modal-content">
-                <form [formGroup]="sellerupdateform" #updsel (ngSubmit)="updateSeller(updsel)">
+                <form [formGroup]="productupdateform" #updpro (ngSubmit)="updatePorduct(updpro)">
             <!-- Modal Header -->
             <div class="modal-header">
               <h4 class="modal-title" style="text-align: center">Update Seller</h4>
@@ -53,22 +57,23 @@
             </div>
             
             <!-- Modal body -->
+            <!-- 
             <div [hidden]="isupdated">
 
-                <input type="hidden" class="form-control"  formControlName="id" [(ngModel)]="updSeller.id">
+                <input type="hidden" class="form-control"  formControlName="id" [(ngModel)]="updProduct.id">
                 <div class="form-group">
-                    <label for="name">Seller AccountId</label>
-                    <input type="text" class="form-control"  formControlName="accountId" [(ngModel)]="updSeller.accountId"  >
+                    <label for="name">Product name</label>
+                    <input type="text" class="form-control"  formControlName="name" [(ngModel)]="updProduct.name">
                 </div>
                 
                 <div class="form-group">
                   <label for="name">Seller First Name</label>
-                  <input type="text" class="form-control"  formControlName="firstName" [(ngModel)]="updSeller.firstName"  >
+                  <input type="text" class="form-control"  formControlName="firstName" [(ngModel)]="updProduct.firstName"  >
                 </div>
 
                 <div class="form-group">
                   <label for="name">Seller Last Name</label>
-                  <input type="text" class="form-control"  formControlName="lastName" [(ngModel)]="updSeller.lastName"  >
+                  <input type="text" class="form-control"  formControlName="lastName" [(ngModel)]="updProduct.lastName"  >
                 </div>
                                 
             </div>  
@@ -76,7 +81,7 @@
                   <h4>Seller Detail Updated!</h4>
               </div>        
                 
-            
+            -->
             <!-- Modal footer -->
             <div class="modal-footer" >
               <button type="submit" class="btn btn-success" [hidden]="isupdated">Update</button>
